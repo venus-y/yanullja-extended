@@ -49,7 +49,22 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build --stacktrace
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd ~/yanullja
+            git pull
+            lsof -i tcp:8080 | awk 'NR!=1 {print $2}' | xargs kill -9
+            nohup ./gradlew bootRun > application.log 2>&1 &
