@@ -42,6 +42,7 @@ jobs:
 
       - name: Create an env.properties file
         run: |
+          cd ./server
           echo "${{secrets.ENV_PROPERTIES}}" > ./src/main/resources/env.properties
 
       - name: Set up JDK 17
@@ -52,8 +53,8 @@ jobs:
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build --stacktrace
+      - name: Run build with Gradle Wrapper
+        run: cd ./server && ./gradlew build --stacktrace
   deploy:
     needs: build
     runs-on: ubuntu-latest
