@@ -16,10 +16,11 @@ import java.util.List;
 @Getter
 public class Review extends BaseDate {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String comment;
+    private String content;
 
     private Double kindnessRate;
 

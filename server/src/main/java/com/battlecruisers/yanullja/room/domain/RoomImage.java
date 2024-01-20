@@ -1,5 +1,6 @@
-package com.battlecruisers.yanullja.review.domain;
+package com.battlecruisers.yanullja.room.domain;
 
+import com.battlecruisers.yanullja.review.domain.Review;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.OnDelete;
@@ -7,18 +8,17 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Entity
-public class ReviewImage {
+public class RoomImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id", nullable = false)
-    private Review review;
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 
     private String imageUrl;
 
 }
-

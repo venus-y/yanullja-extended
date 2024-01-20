@@ -2,17 +2,16 @@ package com.battlecruisers.yanullja.room.domain;
 
 import com.battlecruisers.yanullja.base.BaseDate;
 import com.battlecruisers.yanullja.place.domain.Place;
-import com.battlecruisers.yanullja.roominfo.domain.RoomInfo;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Room extends BaseDate {
 
     @Id
@@ -23,8 +22,42 @@ public class Room extends BaseDate {
 
     private String category;
 
-    @ManyToOne private Place place;
+    private Integer capacity;
 
-    @OneToMany(mappedBy = "room")
-    private List<RoomInfo> roomInfoList = new ArrayList<>();
+    private Integer weekdayRentTime;
+
+    private Integer weekdayRentStartTime;
+
+    private Integer weekdayRentEndTime;
+
+    private Integer weekdayCheckInTime;
+
+    private Integer weekdayCheckOutTime;
+
+    private Integer weekdayRentPrice;
+
+    private Integer weekdayStayPrice;
+
+    private Integer weekendRentTime;
+
+    private Integer weekendRentStartTime;
+
+    private Integer weekendRentEndTime;
+
+    private Integer weekendCheckInTime;
+
+    private Integer weekendCheckOutTime;
+
+    private Integer weekendRentPrice;
+
+    private Integer weekendSentPrice;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "place_id", nullable = false)
+    private Place place;
+
+    @OneToMany(mappedBy = "room", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<RoomImage> roomImages = new ArrayList<>();
+
 }
