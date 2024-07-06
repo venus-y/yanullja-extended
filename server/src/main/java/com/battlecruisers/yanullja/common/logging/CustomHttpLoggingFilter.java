@@ -34,7 +34,6 @@ public class CustomHttpLoggingFilter extends OncePerRequestFilter {
 
         logRequest(wrappedRequest);
 
-        // Continue the filter chain
         filterChain.doFilter(wrappedRequest, wrappedResponse);
 
         logResponse(wrappedResponse);
@@ -68,7 +67,6 @@ public class CustomHttpLoggingFilter extends OncePerRequestFilter {
         String requestBody = new String(request.getContentAsByteArray(),
             Charset.defaultCharset());
 
-        // Log the request URI, headers, and body
         log.info(
             "\n\nRequest: {} {}\n{} \n\nRequest Body: {}\n",
             request.getMethod(),

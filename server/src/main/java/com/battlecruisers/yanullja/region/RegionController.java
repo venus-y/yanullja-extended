@@ -29,17 +29,6 @@ public class RegionController {
             HttpStatus.OK);
     }
 
-//    @Operation(summary = "특정 메인 지역의 서브 지역 전체 조회")
-//    @ApiResponses(value = {
-//        @ApiResponse(responseCode = "200", description = "성공적인 조회")
-//    })
-//    @GetMapping("/main-regions/{mainRegionId}/sub-regions")
-//    public ResponseEntity<List<RegionQueryDto>> queryMainRegions(
-//        @PathVariable("mainRegionId") Long mainRegionId) {
-//        List<RegionQueryDto> regionDtoList = regionService.querySubRegions(mainRegionId);
-//        return new ResponseEntity<List<RegionQueryDto>>(regionDtoList, HttpStatus.OK);
-//    }
-
     @Operation(summary = "특정 메인 지역의 서브 지역 전체 조회")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "성공적인 조회")

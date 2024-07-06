@@ -30,15 +30,7 @@ public class RoomService {
         /**
          * 나중에 숙박 대실 모두 고려한 Dto 완성시 사용할 로직
          * */
-//        RoomQueryDto roomQueryDto = null;
-////        switch (roomType) {
-////            case RENT -> {
-////                roomQueryDto = RoomQueryDto.from(room, checkInDate, checkoutDate, 10);
-////            }
-////            case STAY -> {
-////                roomQueryDto = RoomQueryDto.from(room, checkInDate, checkoutDate, 10);
-////            }
-////        }
+
 
         return RoomQueryDto.from(room, checkInDate, checkoutDate, 10);
     }

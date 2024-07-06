@@ -26,14 +26,11 @@ public class Purchase extends BaseDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 결제 가격
     private BigDecimal price;
 
-    // 결제 상태 [취소, 완료, 진행중, 실패, 환불]??
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
-    // 예약 Reservation
     @OneToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
