@@ -52,7 +52,6 @@ public class PurchaseService {
 
         log.info("finalPrice = {}", finalPrice);
 
-        // 결제 정보 저장
         Purchase purchase = Purchase.createPurchase(reservation, finalPrice);
         purchaseRepository.save(purchase);
 
@@ -60,9 +59,6 @@ public class PurchaseService {
     }
 
     private MemberCoupon validateAndGetMemberCoupon(Long memberCouponId) {
-//        return memberCouponRepository.
-//            findById(memberCouponId).orElseThrow(
-//                () -> new MemberCouponNotFoundException(memberCouponId));
 
         return memberCouponRepository.queryMemberCoupon(memberCouponId)
                 .orElseThrow(() -> new MemberCouponNotFoundException(memberCouponId));

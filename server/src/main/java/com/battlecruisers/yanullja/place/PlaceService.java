@@ -62,7 +62,6 @@ public class PlaceService {
     public static Integer findMaxDiscountPrice(Room room, LocalDate checkInDate,
         RoomType roomType) {
         List<Coupon> couponList = room.getCoupons();
-//        MemeberCoupon memberCoupon = findMaxDiscountPrice(room, MemberCouponList)
 
         return couponList.stream()
             .filter(
@@ -120,7 +119,6 @@ public class PlaceService {
             })
             .collect(Collectors.toList());
 
-        //정렬 조건이 있으면 정렬하기.
         if (sort != null && !sort.isBlank()) {
             placeQueryDtoList = sortDtoList(placeQueryDtoList, sort);
         }
@@ -164,17 +162,14 @@ public class PlaceService {
         List<PlaceSearchCondition> searchCondtionList = makeSearchCondtionList(
             searchConditionDto);
 
-        //검색조건에 맞는 장소 검색
         for (PlaceSearchCondition condition : searchCondtionList) {
             placeList = condition.filterPlaces(placeList, searchConditionDto);
         }
 
-        //DTOList로 변환
         List<PlaceQueryDto> placeQueryDtoList = toPlaceQueryDtoList(placeList,
             searchConditionDto.getStartDate(),
             searchConditionDto.getEndDate(), searchConditionDto.getSort());
 
-        //페이징 처리
         Page<PlaceQueryDto> page = new PageImpl<>(placeQueryDtoList, pageable,
             placeQueryDtoList.size());
         return page;

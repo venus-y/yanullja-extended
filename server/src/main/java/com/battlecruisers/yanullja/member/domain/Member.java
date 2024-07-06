@@ -56,7 +56,6 @@ public class Member {
         this.id = id;
     }
 
-    // 정적 팩토리 메소드
     public static Member createMember(String provider, String providerId,
         String email,
         String nickName, String phoneNumber,
